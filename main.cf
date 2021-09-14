@@ -6,7 +6,7 @@ body common control
 bundle agent edit_motd
 {
 	vars: 
-		"motd" string => "etc/motd";
+		"motd" string => "/etc/motd";
 
 	files:
 		"$(motd)"
