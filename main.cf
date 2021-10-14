@@ -1,25 +1,43 @@
 body common control 
 {
-	bundlesequence => { "edit_motd" };
+    bundlesequence => {"main"};
+    # inputs => { "/var/cfengine/cfengine_stdlib.cf" };
+
+          inputs => {"$(sys.libdir)/stdlib.cf"};
+
+    
 }
 
-bundle agent edit_motd
+
+bundle agent main 
 {
-	vars: 
-		"motd" string => "/etc/motd";
-
-	files:
-		"$(motd)"
-			create => "true",
-			edit_line => addmessage;
-		
-	reports:
-		cfengine::
-			"Hello World!";
+    classes:
+        "line_exists" expression => regline (".*foo.*", "/tmp/test_data.txt");
+        "file_exists" expression => fileexists ("/tmp/test_data.txt");
 }
 
-bundle edit_line addmessage 
-{
-	insert_lines:
-		"Bajs kiss.";
-}
+
+# services:
+# "ssh" service_policy => "stop";
+
+
+    
+     bundle agent test
+     {
+     vars:
+
+       "software" slist => { "xcards", "phlex" };
+
+     files:
+
+       "$(software)"
+
+         create => "true",
+          action => logme("$(software)");
+
+     }
+
+     body action logme(x)
+     {
+         action_policy => "warn";
+     }
