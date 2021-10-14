@@ -10,7 +10,6 @@ body common control
 }
 
 
-
 bundle agent mycopy
 {
   files:
