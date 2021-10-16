@@ -8,4 +8,4 @@ body common control
       reports:
         cfengine::
           "Hello, world";
-    
+	}
