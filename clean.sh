@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
-rm -rf ./build
-mkdir build
+
+dir=$(pwd)
+cd ${dir}/build
+rm -rf *
+cd ${dir}
