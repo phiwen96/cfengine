@@ -2,20 +2,17 @@
 body common control 
 {
     version => "0.0.0";
-    bundlesequence => {"main"};
+    bundlesequence => {"structure"};
 }
 
-bundle agent main 
+bundle agent structure 
 {
-	vars:
-		"fil" string => "/Users/philipwenkel/Github/cfengine/build/kuk";
+    "doc0" string => "/Users/philipwenkel/Github/cfengine/build/kuk";
     files:
-			"$(fil)"
+		"$(doc0)"
 			create => "true",
 			edit_line => addmessage;
 			#  edit_defaults => no_backup;
-
-	
 }
 
 bundle edit_line addmessage 
