@@ -23,6 +23,18 @@ bundle agent main
 
 	reports:
 		cfengine::
+			"$(sys.workdir)";
+			"$(sys.bindir)";
+			"$(sys.cf_version)";
+			"$(sys.class)";
+			"$(sys.cpus)";
+			"$(sys.host)";
+			"$(sys.inputdir)";
+			"$(sys.ipv4)";
+			"$(sys.libdir)";
+			"$(sys.os)";
+			"$(sys.uptime)"; # minutes
+			"$(sys.workdir)";
 			
 }
 
