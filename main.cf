@@ -1,75 +1,12 @@
+
 body common control 
 {
     version => "0.0.0";
-    bundlesequence => {"main", "mycopy"};
-    # inputs => { "/var/cfengine/cfengine_stdlib.cf" };
-
-          inputs => {"$(sys.libdir)/stdlib.cf"};
-
-    
+    bundlesequence => {"main"};
 }
-
-
-bundle agent mycopy
-{
-  files:
-
-    #   "/home/mark/tmp/test_plain" copy_from => local_cp("$(sys.workdir)/bin/file");
-
-    #   "/home/mark/tmp/test_remote_plain" copy_from => secure_cp("$(sys.workdir)/bin/file","serverhost");
-}
-
 
 bundle agent main 
 {
-  
     classes:
-        "line_exists" expression => regline (".*foo.*", "/tmp/test_data.txt");
-        "file_exists" expression => fileexists ("/tmp/test_data.txt");
     files:
-        “/affected/file”
-		    create => “true”,
-		     perms => system_settings;
-
-}
-
-
-# services:
-# "ssh" service_policy => "stop";
-
-
-
-    
-    #  bundle agent test
-    #  {
-    #  vars:
-    # # shellcommands:
-    # #     "ls";
-    # # files:
-    # #     "/etc/ssh/sshd_config"
-    # #         comment => "Ensure root login is disallowed",
-    # #         edit_line => replace_or_add (".*PermitRootLogin.*", "PermitRootLogin no");
-    #    "software" slist => { "xcards", "phlex" };
-
-    #  files:
-
-    #    "$(software)"
-
-    #      create => "true",
-    #       action => logme("$(software)");
-
-    #  }
-
-    #  body action logme(x)
-    #  {
-    #      action_policy => "warn";
-    #  }
-
-
-
-
-body perms system_settings
-{
-    mode => “644”;
-    owners => { “root”, “administrator”, “wheel” };
 }
