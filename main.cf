@@ -1,4 +1,8 @@
-
+# body agent control
+#     {
+#     default_repository => "/var/cfengine/backups";
+#     } 
+	
 body common control 
 {
     version => "0.0.0";
@@ -9,4 +13,14 @@ bundle agent main
 {
     classes:
     files:
+		"/Users/philipwenkel/Github/cfengine/kuk"
+			create => "true",
+			edit_line => addmessage;
+			#  edit_defaults => no_backup;
+}
+
+bundle edit_line addmessage 
+{
+	insert_lines:
+		"Hej jag heter Philip!";
 }

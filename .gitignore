@@ -2,6 +2,7 @@
 .vscode
 .DS_Store
 # *.sh
+*.cf-before-edit
 
 # Prerequisites
 *.d
