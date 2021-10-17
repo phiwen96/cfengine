@@ -2,34 +2,28 @@
 body common control 
 {
     version => "0.0.0";
+	inputs => {"/opt/homebrew/Cellar/cfengine/3.18.0/share/cfengine/CoreBase/lib/stdlib.cf"};
     bundlesequence => {"main"};
 }
 
 bundle agent main 
 {
 	vars:
-		"files[paths]" slist => 
-		{
-			"/Users/philipwenkel/Github/cfengine/build/kuk",
-			"/Users/philipwenkel/Github/cfengine/build/fitta"
-		};
+		"masterfiles" string => "/var/cfengine/masterfiles";
 
-		"files[index]" ilist => 
-		{
-			"0",
-			"1"
-		};
 
-		"fields" slist => getindices ("files");
+    # files:
+	# 	 "$(masterfiles)/failsafe.cf"
+	# 				create => "true";
 
-    files:
-		"$(files[paths])" create => "true",
-				   edit_line => addmessage;
+	# 	"$(masterfiles)/promises.cf"
+	# 				create => "true";
+				#    edit_line => addmessage;
 
 
 	reports:
 		cfengine::
-			"$(fields)";
+			
 }
 
 bundle edit_line addmessage 
@@ -37,3 +31,4 @@ bundle edit_line addmessage
 	insert_lines:
 		"Hej jag heter Philip !";
 }
+
