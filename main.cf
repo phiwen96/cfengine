@@ -8,14 +8,28 @@ body common control
 bundle agent main 
 {
 	vars:
-		"fil" string => "/Users/philipwenkel/Github/cfengine/build/kuk";
-    files:
-			"$(fil)"
-			create => "true",
-			edit_line => addmessage;
-			#  edit_defaults => no_backup;
+		"files[paths]" slist => 
+		{
+			"/Users/philipwenkel/Github/cfengine/build/kuk",
+			"/Users/philipwenkel/Github/cfengine/build/fitta"
+		};
 
-	
+		"files[index]" ilist => 
+		{
+			"0",
+			"1"
+		};
+
+		"fields" slist => getindices ("files");
+
+    files:
+		"$(files[paths])" create => "true",
+				   edit_line => addmessage;
+
+
+	reports:
+		cfengine::
+			"$(fields)";
 }
 
 bundle edit_line addmessage 
